@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原生拖拽</title>
+	<style>
+		.son{
+			width:200px;
+			height:200px;
+			background: red;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+		.box{
+			width:300px;
+			height:300px;
+			border: 1px solid blue;
+			margin:20px auto;
+			position:relative;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="son"></div>
+	</div>
+</body>
+</html>
+<script>
+	var son = document.querySelector(".son");
+//父元素不加定位 正常(不采用)
+// e.clentX - e.offsetX
+	// son.onmousedown = function(e){
+	// 	var dx = e.offsetX;
+	// 	var dy = e.offsetY;
+	// 	document.onmousemove = function(e){
+	// 		var mx = e.clientX;
+	// 		var my = e.clientY;
+	// 		son.style.left = mx - dx +"px";
+	// 		son.style.top = my -dy +"px";
+	// 	}
+	// }
+	// document.onmouseup = function(){
+	// 	document.onmousemove = null;
+	// }
+// 父元素加定位 处理方法(适用于所有)
+	//	1. 父元素具有定位属性之后,left的值应为其到具有定位属性父元素的距离，而不再是【e.clientX - e.offsetX】(包含其具有定位父元素的left、border等一系列值)
+	//  2.正确处理方法应先在mousedown时,得到 s=【时间对象到事件源的距离+其众多父元素到浏览器的距离】即(e.client-时间对象源.offsetLeft)。后在mousemove的时候，用(e.clientX - s),得到的值即为事件源到其具有定位属性的父元素的距离。
+	son.onmousedown = function(e){
+		var nx = e.clientX;
+		var ny = e.clientY;
+		var ox = son.offsetLeft;
+		var oy = son.offsetTop;
+		var x = nx - ox;
+		var y = ny -oy;
+		document.onmousemove = function(e){
+			var mx = e.clientX;
+			var my = e.clientY;
+			son.style.left = mx - x +"px";
+			son.style.top = my - y +"px";
+		}
+	}
+	document.onmouseup =function(){
+			document.onmousemove = null;
+	}
+
+</script>

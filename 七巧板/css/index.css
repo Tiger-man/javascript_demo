@@ -1,0 +1,17 @@
+*{
+	margin:0;
+}
+.contain{
+	width:400px;
+	height:400px;
+	border:1px solid red;
+	margin-top:50px;
+	float:left;
+}
+.draw{
+	width:600px;
+	height:600px;
+	float:left;
+	background: blue;
+	margin-left:20px: 
+}

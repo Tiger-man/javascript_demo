@@ -1,0 +1,16 @@
+body{
+	margin:0;
+}
+.box{
+	width:100%;
+	height:340px;
+	overflow: hidden;
+}
+.box .one{
+	width:932px;
+	height:340px;
+	float:left;
+	overflow: hidden;
+	transition:width .3s;
+	cursor:w-resize;
+}

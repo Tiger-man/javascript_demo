@@ -1,0 +1,36 @@
+*{
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+nav{
+	width:1000px;
+	margin:0 auto;
+}
+ul.nav{
+	overflow: hidden;
+}
+ul.nav>li{
+	float: left;
+	background: #1CD388;
+	color:#333333;
+	padding:5px 20px;
+	margin-right: 10px;
+	cursor:pointer;
+}
+ul.mask{
+	height:3px;
+	position: relative;
+}
+ul.mask>li.active{
+	background: red;
+	height:3px;
+	position: absolute;
+	width:72px;
+	left:0;
+	transition:all 0.5s;
+}
+ul.nav>li.hot{
+	color:#fff;
+	background: #000;
+}

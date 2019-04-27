@@ -1,0 +1,143 @@
+body,html,head{
+	margin:0;
+	height:100%;
+	overflow: hidden;
+}
+.dian{
+	width:20px;
+	height:20px;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left:0;
+	right:0;
+	margin:auto;
+	background:rgba(0,55,255,1);
+	z-index: 1001;
+	border-radius: 50%;
+}
+.canzhao{
+	width:1px;
+	height:1px;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left:0;
+	right:0;
+	margin:auto;
+	background: red;
+	z-index: 1000;
+}
+.box{
+	width:510px;
+	height:510px;
+	border: 1px solid red;
+	margin:20px auto 0px;
+	position: relative;
+	border-radius: 50%;
+	box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.5),0px 0px 2px 2px rgba(0,0,0,1)
+}
+.box .clock{
+	width:500px;
+	height:500px;
+	border: 1px solid black;
+	border-radius: 50%;
+	margin:5px auto;
+	background: #F1E0E0;
+	box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.5),0px 0px 2px 2px rgba(0,0,0,1)
+}
+.box .clock .contain{
+	width:10px;
+	height:500px;
+	position: absolute;
+	left:0;
+	right:0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index:10;
+	background-image:linear-gradient(black 5%,transparent 5%,transparent 95%,black 5%);
+}
+.box .clock .contain2{
+	width:5px;
+	height:300px;
+	position: absolute;
+	background-image:linear-gradient(red 5%,transparent 5%,transparent);
+	left:0;
+	right:0;
+	z-index: 2;
+	margin-left: auto;
+	margin-right: auto;
+	transform-origin:center 250px;
+}
+.second{
+	width:3px;
+	height:200px;
+	position: absolute;
+	left:-1px;
+	background: yellow;
+	z-index: 1000;
+	top:-200px;
+	transform-origin:center bottom;
+}
+.minute{
+	width:7px;
+	height:150px;
+	position: absolute;
+	left:-3px;
+	background: red;
+	z-index: 1000;
+	top:-150px;
+	transform-origin:center bottom;
+}
+.hour{
+	width:11px;
+	height:80px;
+	position: absolute;
+	left:-5px;
+	background: purple;
+	z-index: 1000;
+	top:-80px;
+	transform-origin:center bottom;
+
+}
+.time{
+	width:200px;
+	height:50px;
+	position: absolute;
+	left:0;
+	right:0;
+	margin:auto;
+	bottom:170px;
+	background: rgba(0,0,0,1);
+	color:#FFF;
+	line-height: 50px;
+	font-size: 42px;
+	border-radius: 10px;	
+}
+.time span{
+	display: block;
+	height:100%;
+	float:left;
+	box-sizing:border-box;
+	text-align: center;
+	cursor: pointer;
+	text-shadow:1px 0px 2px rgba(0,0,0,0.5);
+}
+.time span:hover{
+	color:red;
+
+}
+.time span:nth-child(1){
+	width:25%;
+}
+.time span:nth-child(3){
+	width:25%;
+}
+.time span:nth-child(5){
+	width:25%;
+}
+.time span:focus{
+	background: red;
+	border:none;
+	outline: none;
+}

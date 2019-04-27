@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width">
+</head>
+<style>
+	body,ul,li{
+		margin:0;
+		padding:0;
+		list-style: none;
+	}
+	.box{
+		width:100%;
+		height:200px;
+		position: relative;
+		overflow: hidden;
+		background: #000;
+	}
+	.box .imgbox{
+		height:200px;
+		width:1000px;
+		position: absolute;
+		left:0;
+		top:0;
+	}
+	.box .imgbox .one{
+		float:left;
+		width:100%;
+		height:100%;
+	}
+	.box .imgbox .one:nth-child(1){
+		background: red;
+	}
+	.box .imgbox .one:nth-child(2){
+		background: yellow;
+	}
+	.box .imgbox .one:nth-child(3){
+		background: green;
+	}
+	.box .imgbox .one:nth-child(4){
+		background: pink;
+	}
+	.box .imgbox .one:nth-child(5){
+		background: purple;
+	}
+	.box .imgbox .one:nth-child(6){
+		background: red;
+	}
+	ul{
+		display: block;
+		position: absolute;
+		height:12px;
+		bottom:10px;
+		left:0;
+		right:0;
+		margin-left: auto;
+		margin-right: auto;
+		width:100px;
+	}
+	ul li{
+		width:12px;
+		height:12px;
+		float:left;
+		border-radius:50%;
+		background: #CCC;
+		margin-right: 8px;
+	}
+	ul li.hot{
+		background: #0C064F;
+	}
+
+
+</style>
+<body>
+	<div class="box">
+		<div class="imgbox">
+			<div class="one"></div>
+			<div class="one"></div>
+			<div class="one"></div>
+			<div class="one"></div>
+			<div class="one"></div>
+		</div>
+		<ul>
+			<li class="hot">
+			<li>
+			<li>
+			<li>
+			<li>
+		</ul>
+	</div>
+</body>
+<script>
+	//快速拖动
+	window.addEventListener("DOMContentLoaded",function(){
+		var ones = document.querySelectorAll(".one");
+		var imgbox = document.querySelector(".imgbox");
+		var cliW = document.documentElement.clientWidth;
+		var lis = document.querySelectorAll("li");
+		var endX ;
+		var startX = 0;
+		var index = 0;
+		var startT,endT;
+		imgbox.style.width=cliW*ones.length+"px";
+		for(var i=0;i<ones.length;i++){
+			ones[i].style.width=cliW+"px";
+		}
+	//拖拽
+		imgbox.addEventListener("touchstart",function(e){
+			clearInterval(t)
+			startT = e.timeStamp;
+			window.removeEventListener("touchend",end);
+			imgbox.style.transition="";
+			var aim1 = e.targetTouches[0];
+			startX = aim1.clientX;
+		});
+		window.addEventListener("touchmove",function(e){
+				var aim2 = e.targetTouches[0];
+				endX = aim2.clientX;
+				if(index==0&&endX-startX>0){
+					imgbox.style.transform="translate3D(30px,0,0)"
+					return;
+				}
+				if(index==ones.length-1&&endX-startX<0){
+					imgbox.style.transform="translate3D(-"+(((index)*cliW)+30)+"px,0,0)"
+					return;
+				}
+				imgbox.style.transform="translate3D("+((endX-startX)-(index*cliW))+"px,0,0)"
+		})
+		imgbox.addEventListener("touchend",end);
+		function end(e){
+			endT = e.timeStamp;
+			var qend = e.changedTouches[0].clientX;
+			var qmove = Math.abs(qend - startX);
+			imgbox.style.transition="transform 1s";
+			if(endX-startX<0){
+				if(Math.abs(endX-startX)>cliW/2||(endT-startT<300&&qmove>30)){
+					index++;
+					if(index==ones.length){
+						index = ones.length-1;
+					}
+					imgbox.style.transform="translate3D(-"+(index*cliW)+"px,0,0)"
+				}else{
+					imgbox.style.transform="translate3D(-"+(index*cliW)+"px,0,0)"
+				}
+			}else if(endX-startX>0){
+				if(endX-startX>cliW/2||(endT-startT<300&&qmove>30)){
+					index--;
+					if(index==-1){
+						index=0;
+					}
+					imgbox.style.transform="translate3D(-"+(index*cliW)+"px,0,0)"
+				}else{
+					imgbox.style.transform="translate3D(-"+(index*cliW)+"px,0,0)"
+				}
+			}
+			for(var i=0;i<lis.length;i++){
+					lis[i].classList.remove("hot");
+				}
+
+			if(index==5||index==6){
+				lis[0].classList.add("hot")
+			}else{
+				lis[index].classList.add("hot")
+			}
+			setTimeout(function(){
+				clearInterval(t);
+				t = setInterval(move,2000);}
+				,4000)
+		}
+	//自动触发
+		var t = setInterval(move,2000);
+		function move(){
+			var ones2 = document.querySelectorAll(".one");
+			index++;
+			var divs = document.createElement("div");
+			if(ones2.length==5){
+				divs.classList.add("one");
+				divs.style.width=ones2[1].style.width;
+				imgbox.appendChild(divs);
+			}
+			imgbox.style.width=cliW*(ones2.length+1)+"px";
+			if(index==ones.length+1){
+				index=0;
+				imgbox.style.transition="";
+				imgbox.style.transform="translate3D(0px,0,0)";
+			}else{
+				imgbox.style.transition="transform 1s";
+				imgbox.style.transform="translate3D(-"+(index*cliW)+"px,0,0)";
+			}
+			for(var i=0;i<lis.length;i++){
+				lis[i].classList.remove("hot");
+			}
+			if(index==5){
+				lis[0].classList.add("hot")
+			}else{
+				lis[index].classList.add("hot")
+			}
+			
+		}
+		for(var j=0;j<lis.length;j++){
+			lis[j].pig=j;
+			lis[j].onclick=function(){
+				clearInterval(t);
+				imgbox.style.transition="transform 1s";
+				index = this.pig;
+				imgbox.style.transform="translate3D(-"+(index*cliW)+"px,0,0)";
+				for(var i=0;i<lis.length;i++){
+					lis[i].classList.remove("hot");
+				}
+				lis[this.pig].classList.add("hot");
+				setTimeout(function(){
+				clearInterval(t);
+				t = setInterval(move,2000);}
+				,4000)
+			}
+		}
+
+	})
+</script>
+</html>

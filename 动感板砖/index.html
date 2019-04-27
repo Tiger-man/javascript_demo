@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.contain{
+		width:800px;
+		height:500px;
+		border: 1px solid red;
+		margin:10px auto;
+		background: #F5F5F5;
+		position: relative;
+	}
+	.contain .box{
+		width:10px;
+		height:40px;
+		position: absolute;
+		bottom:0px;
+		left:15px;
+		background: #aaaaaa;
+		transition:all 0.5s;
+		/*margin-right: 10px;*/
+	}
+	.contain .box .son{
+		width:10px;
+		height: 5px;
+		background: red;
+		position: absolute;
+		transition:all 0.2s;
+		top:0;
+		/*transform:translate3D(0,10px,0);*/
+	}
+</style>
+<body>
+	<div class="contain">
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="box">
+			<div class="son"></div>
+		</div>
+		<div class="dur">
+			<span class="hour"></span>
+			<span>:</span>
+			<span class="minute"></span>
+			<span>:</span>
+			<span class="second"></span>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var con = document.querySelectorAll(".contain");
+	var box = document.querySelectorAll(".box");
+	var dur = document.querySelector(".dur");
+	var hour = dur.querySelector(".hour");
+	var minute = dur.querySelector(".minute");
+	var second = dur.querySelector(".second");
+	var index=0;
+	var Time = 10000;
+	var musT = hms(Time*200/1000);
+	var data = 0;
+	function ss(attr){
+		var son = attr.querySelector(".son");
+		var t = setInterval(move,200);
+
+		function move(){
+			data+=200;
+			hour.innerHTML = musT.h;
+			minute.innerHTML = musT.m;
+			second.innerHTML = musT.s;
+			if(index>=Time){
+				for(var j=0;j<box.length;j++){
+					box[j].querySelector(".son").style.transform="translate3D(0,"+0+",0)";
+					box[j].style.height="40px";
+				}
+				clearInterval(t);
+				return;
+			}
+			index++;
+			son.style.transform="translate3D(0,"+0+",0)";
+			var heis =Math.floor(Math.random()*300)
+			var hei = heis+"px";
+			if(heis>150){
+				attr.style.background="red";
+				son.style.background="black"
+			}else if(heis<150&&heis>50){
+				attr.style.background="blue";
+				son.style.background="red";
+			}
+			var shei = Math.floor(-Math.random()*150);
+			son.style.transform = "translate3D(0,"+shei+"px,0)";
+			attr.style.height = hei;
+
+		}
+	}
+	for(var i=0;i<box.length;i++){
+		box[i].style.left=(i+1)*15+"px";
+		ss(box[i]);
+	}
+	function hms(num){
+		var h = Math.floor(num/3600);
+		var dh = num%3600;
+		var m = Math.floor(dh/60);
+		var s = dh%60;
+		return {h:h,m:m,s:s}
+	}
+</script>

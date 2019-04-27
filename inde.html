@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.box{
+		width:500px;
+		height:500px;
+		margin:50px auto;
+		border:2px solid red;
+		position: relative;
+		border-radius: 50%;
+		transition:all 0.3s;
+	}
+	.son{
+		width:50px;
+		height:50px;
+		background: blue;
+		position: absolute;
+		left:50%;
+		top:50%;
+		transform:translateX(-50%) translateY(-50%);
+		border-radius: 50%;
+		text-align: center;
+		line-height: 50px;
+		font-size: 30px;
+		color:#FFF;
+	}
+</style>
+<body>
+	<div class="box">
+		
+	</div>
+</body>
+</html>
+<script>
+	var box = document.querySelector(".box");
+	var r = parseInt(box.offsetWidth)/2;
+	for(var i=0;i<12;i++){
+		var s = document.createElement("div");
+		s.classList.add("son");
+		box.appendChild(s);
+		var end = pos(s,i);
+		if(i==0){
+			s.innerHTML = 12
+		}else{
+			s.innerHTML = i;
+		}
+		
+		s.style.left = end.l;
+		s.style.top = end.t;
+	}
+	function pos(attr,index){
+		var deg = index * 30;
+		var hd = Math.PI / 180 *deg;
+		var l = Math.sin(hd) * r + r +"px";
+		var t = Math.cos(hd) * r +r +"px";
+		return {l:l,t:t}
+	}
+	var con =0;
+	var flag =true;
+	var no = 0;
+	box.onclick=function(){
+		if(flag){
+			flag = false;
+			t=setInterval(rota,100)
+			function rota(){
+				var son= document.querySelectorAll(".son")
+				con++;
+				box.style.transform="rotate("+(30*con)+"deg)";
+				for(var i=0;i<son.length;i++){
+					son[i].style.background="blue";
+				}
+				son[no].style.background="red";
+				no++;
+				if(no==12){
+					no=0;
+				}
+			}
+		}else{
+			flag = true;
+			clearInterval(t);
+			console.log(1)
+		}
+	}
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.box{
+		width:700px;
+		height:400px;
+		border:1px solid #ccc;
+		position: relative;
+	}
+	.mood{
+		height: 5px;
+		width:400px;
+		position: absolute;
+		left:0;
+		right:0;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(5.gif) center center/cover;
+		bottom:140px;
+		z-index:10;
+		transform-origin:center center;
+		animation:move 5s infinite alternate;
+	}
+	.tran{
+		border-bottom: 24px solid black;
+		border-top: 24px solid transparent;
+		border-left: 24px solid transparent;
+		border-right: 24px solid transparent;
+		position: absolute;
+		left:0;
+		right:0;
+		margin-left: auto;
+		margin-right: auto;
+		bottom:120px;
+		width:0;
+	}
+	@keyframes move{
+		0%{
+			transform:rotateZ(0deg);
+		}
+		50%{
+			transform:rotateZ(28deg);
+		}
+		100%{
+			transform:rotateZ(-15deg);
+		}
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="mood"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="tran"></div>
+	</div>
+</body>
+</html>
+<script>
+	var mood = document.querySelector(".mood");
+
+
+</script>

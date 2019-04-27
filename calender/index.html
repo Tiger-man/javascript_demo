@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="core.js"></script>
+</head>
+<body>
+<style>
+	body{
+		font-family: 苹方;
+
+	}
+	th{
+		font-size: 20px;
+	}
+	td{
+		width:75px;
+		height:70px;
+		text-align: center;
+	}
+	caption{
+		margin-bottom: 20px;
+		margin-top: 20px;
+		font-size: 32px;
+	}
+	.show_center{
+		font-size: 14px;
+		text-align: center;
+		flex:1;
+	}
+	.btn{
+		display: inline-block;
+	}
+	.topBox{
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 550px;
+		margin:0 auto;
+	}
+	.btn{
+		padding: 0 10px;
+		flex:0;
+		white-space: nowrap;
+		cursor: pointer;
+	}
+	.btn:hover{
+		text-decoration: underline;
+		color:orange;
+	}
+	.tab_active.tab_is_current_month{
+		background-color: red;
+		border-radius: 50%;
+		color:#fff;
+	}
+	.tab_is_not_current_month{
+		background-color: #ccc;
+		color:red;
+	}
+	.tab_is_current_month{
+		background-color: #fff;
+		color:#333;
+	}
+	.areaInput{
+		width: 550px;
+		margin:0 auto;
+	}
+</style>
+	<div class="areaInput">
+		<input type="number" id="year" min="1975"/>
+		<input type="number" id="month" max="12" min="1"/>
+		<button onclick="goAimDate()">跳转</button>
+	</div>
+
+	<div class="topBox">
+		<span class="btn top" onclick="clickBefore()">上一月</span>
+		<h1 class='show_center'></h1>		
+		<span class="btn next" onclick="clickAfter()">下一月</span>
+		<span class="btn next" onclick="clickToToday()">今天</span>
+	</div>
+	<table align="center">
+		<thead></thead>
+		<tbody>
+			
+		</tbody>
+
+	</table>
+
+</body>
+</html>
+<script src="index.js"></script>

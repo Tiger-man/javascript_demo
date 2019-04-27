@@ -1,0 +1,29 @@
+body{
+	margin:0;
+}
+.top{
+	height: 100px;
+	width:990px;
+	overflow: hidden;
+	margin:10px auto;
+}
+.nine{
+	width:100px;
+	height:100px;
+	margin-right: 10px;
+	float:left;
+}
+.bottom{
+	width:300px;
+	height:300px;
+	margin:50px auto;
+	border:1px solid red;
+	/*background: url(../images/p.jpg) no-repeat center center/contain;*/
+	/*opacity: 0.2;*/
+}
+.bottom .tu{
+	width:100px;
+	height:100px;
+	float:left;
+	opacity: 1;
+}

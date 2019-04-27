@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.box{
+		width:74px;
+		height:24px;
+		border:1px solid #009966;
+		text-align: center;
+		line-height: 24px;
+		color:#000;
+		cursor: pointer;
+		position: relative;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	.box::selection{
+		background: transparent;
+	}
+	.box #bg{
+		position: absolute;
+		left:0;
+		right:0;
+		z-index: -1;
+	}
+	span{
+		transition:color 0.3s;
+	}
+</style>
+<body>
+	<div class="box">
+		<span>下载</span>
+		<canvas width=74 height=24 id="bg"></canvas>
+	</div>
+</body>
+</html>
+<script>
+	var box = document.querySelector(".box");
+	var span =document.querySelector("span");
+	var flag = true;
+	var bg = document.querySelector("#bg");
+	var attr = bg.getContext('2d');
+	var t;
+	var i=0;
+	var colo = "red";
+
+	box.onclick = function(){
+		if(flag){
+			// span.innerHTML = "暂停";
+				
+				t = setInterval(function(){
+					if(i>=74){
+						span.style.color="red";
+						span.innerHTML="完成"
+						return;
+					}
+					i+=1;
+					if(i<=55&&i>=20){
+						console.log(i)
+						span.style.color="#fff";
+						colo = "green";
+					}
+					attr.fillStyle = colo;
+
+					attr.fillRect(0,0,i,24);
+
+					span.innerHTML=Math.floor(i/74*100)+"%";
+
+				},500)
+			
+			flag = false;
+		}else{
+			span.innerHTML=Math.floor(i/74*100)+"%";
+			clearInterval(t)
+			flag = true;
+		}
+	}
+</script>
